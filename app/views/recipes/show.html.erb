@@ -1,0 +1,37 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= @recipe.title %></h5>
+          <p class="card-text"><%= simple_format @recipe.content %></p>
+          <p class="card-text">
+            <small class="text-muted">更新日：<%= @recipe.updated_at.strftime("%Y-%m-%d %H:%M") %></small>
+          </p>
+          <% if current_user.already_favorited?(@recipe) %>
+            <%= link_to recipe_favorites_path(@recipe), method: :delete, class:'btn btn-light' do %>
+              <i class="fas fa-heart"></i>
+              <%= @recipe.favorites.count %>
+            <% end %>
+          <% else %>
+            <%= link_to recipe_favorites_path(@recipe), method: :post, class:'btn btn-light' do %>
+              <i class="far fa-heart"></i>
+              <%= @recipe.favorites.count %>
+            <% end %>
+          <% end %>
+
+          <% if @recipe.user == current_user %>
+            <%= link_to edit_recipe_path(@recipe), class:'btn btn-success' do %>
+              <i class="far fa-edit"></i>
+              編集
+            <% end %>
+            <%= link_to recipe_path(@recipe), method: :delete, class:'btn btn-danger' do %>
+              <i class="far fa-trash-alt"></i>
+              削除
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div

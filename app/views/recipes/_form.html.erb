@@ -1,0 +1,13 @@
+<%= form_with model: recipe do |f| %>
+  <div class="form-group">
+    <label>作品名</label>
+    <%= f.text_field :title, class:'form-control' %>
+  </div>
+  <div class="form-group">
+    <label>工程</label>
+    <%= f.text_area :content, class:'form-control' %>
+  </div>
+  <div >
+      <%= f.submit '編集', class:'btn btn-primary' %>
+  </div>
+<% end %>
